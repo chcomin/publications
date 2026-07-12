@@ -22,7 +22,7 @@ keywords:
   - Blood vessel dataset
   - Fluorescence microscopy
   - Distribution shift
-mathjax: true         
+mathjax: true
 bibtex: |
   @article{viana2025new,
     title={A new dataset for measuring the performance of blood vessel segmentation methods under distribution shifts},

@@ -120,6 +120,26 @@
 {% if page.mathjax %}
 <script>
   MathJax = {
+    startup: {
+      ready() {
+        // kramdown renders GitHub-flavored $`...`$ math as $<code>...</code>$.
+        // Unwrap those <code> elements back to plain text so MathJax can process them.
+        Array.from(document.querySelectorAll('code')).forEach(function(code) {
+          var prev = code.previousSibling;
+          var next = code.nextSibling;
+          if (!prev || prev.nodeType !== 3 || !next || next.nodeType !== 3) return;
+          var p = prev.textContent, n = next.textContent;
+          var d = (p.slice(-2) === '$$' && n.slice(0, 2) === '$$') ? '$$'
+                : (p.slice(-1) === '$'  && n.slice(0, 1) === '$')  ? '$'
+                : null;
+          if (!d) return;
+          prev.textContent = p.slice(0, -d.length) + d + code.textContent + d;
+          next.textContent = n.slice(d.length);
+          code.parentNode.removeChild(code);
+        });
+        MathJax.startup.defaultReady();
+      }
+    },
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       displayMath: [['$$', '$$'], ['\\[', '\\]']]
