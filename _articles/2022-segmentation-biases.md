@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: article
 title: An Analysis of the Inﬂuence of Transfer Learning When Measuring the Tortuosity of Blood Vessels
 authors:

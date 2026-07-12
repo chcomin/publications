@@ -1,7 +1,7 @@
 ---
-published: false
+published: true
 layout: article
-title: Gland context networks: a novel approach for improving prostate cancer identification
+title: "Gland context networks: a novel approach for improving prostate cancer identification"
 authors:
 - name: Rodrigo de P. Mendes
 - name: Xin Yuan

@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: article
 title: Artificial vascular image generation using blood vessel texture maps
 authors:
