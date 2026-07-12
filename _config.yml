@@ -1,0 +1,59 @@
+# ============================================================
+# Site settings
+# ============================================================
+title: "Cesar H. Comin Publications"
+description: >-
+  Full-text of articles by Cesar H. Comin.
+
+url: "https://chcomin.github.io"
+baseurl: "/publications"
+
+# Author — used in JSON-LD publisher and the nav/footer
+author:
+  name: "Cesar H. Comin"
+  orcid: "0000-0003-1207-4982"
+
+# ============================================================
+# Build settings
+# ============================================================
+markdown: kramdown
+highlighter: rouge
+
+# ============================================================
+# Collections
+# ============================================================
+collections:
+  articles:
+    output: true
+    permalink: /articles/:name/
+
+# Apply the article layout to every file in _articles/ by default.
+# Individual files may override this with their own layout: key.
+defaults:
+  - scope:
+      path: ""
+      type: articles
+    values:
+      layout: article
+
+# ============================================================
+# Plugins  (all GitHub Pages-whitelisted)
+# ============================================================
+plugins:
+  - jekyll-sitemap   # auto-generates /sitemap.xml
+  - jekyll-feed      # auto-generates Atom feed
+
+# jekyll-feed: target the articles collection
+feed:
+  collections:
+    - articles
+
+# ============================================================
+# Exclusions
+# ============================================================
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - "*.sh"
+  - vendor/

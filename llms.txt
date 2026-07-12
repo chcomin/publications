@@ -1,0 +1,24 @@
+---
+permalink: /llms.txt
+---
+# {{ site.title }}
+
+> This site hosts the full text of {% assign all = site.articles %}{{ all | size }} academic articles by {{ site.author.name }}.
+
+All article pages render the complete article text directly in HTML (no JavaScript rendering required) and include Schema.org ScholarlyArticle JSON-LD, Google Scholar `citation_*` meta tags, Dublin Core, and Open Graph metadata.
+
+{% assign articles = site.articles | sort: "date" | reverse %}
+## Articles
+
+{% for article in articles %}- [{{ article.title }}]({{ article.url | absolute_url }}): {{ article.journal }}, {{ article.year }}
+{% endfor %}
+
+## Resources
+
+- [Full-text corpus]({{ '/llms-full.txt' | absolute_url }}): All articles concatenated as plain text — use this for single-request LLM ingestion of the full publication record
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }}): XML sitemap listing all pages
+- [Atom feed]({{ '/feed/articles.xml' | absolute_url }}): Atom feed of all articles with abstracts
+
+## Optional
+
+- [Author ORCID](https://orcid.org/{{ site.author.orcid }}): Authoritative author identifier and external publication list

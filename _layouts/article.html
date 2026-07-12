@@ -1,0 +1,46 @@
+---
+layout: default
+---
+<article>
+
+  <header>
+    <h1>{{ page.title }}</h1>
+
+    <p>
+      {% for author in page.authors -%}
+        {{ author.name }}{% if author.orcid %} (<a href="https://orcid.org/{{ author.orcid }}">ORCID</a>){% endif %}{% unless forloop.last %}, {% endunless %}
+      {%- endfor %}
+    </p>
+
+    <p>
+      <em>{{ page.journal }}</em>{% if page.volume %}, {{ page.volume }}{% endif %}{% if page.issue %}({{ page.issue }}){% endif %}{% if page.pages %}: {{ page.pages }}{% endif %}.
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.year }}</time>.
+      {% if page.doi %}DOI: <a href="https://doi.org/{{ page.doi }}">{{ page.doi }}</a>.{% endif %}
+    </p>
+  </header>
+
+  {% if page.abstract %}
+  <section id="abstract">
+    <h2>Abstract</h2>
+    <div>{{ page.abstract | markdownify }}</div>
+  </section>
+  {% endif %}
+
+  <section id="full-text">
+    {{ content }}
+  </section>
+
+  {% if page.keywords %}
+  <section id="keywords">
+    <p><strong>Keywords:</strong> {{ page.keywords | join: ', ' }}</p>
+  </section>
+  {% endif %}
+
+  {% if page.bibtex %}
+  <section id="citation">
+    <h2>Citation</h2>
+    <pre><code>{{ page.bibtex }}</code></pre>
+  </section>
+  {% endif %}
+
+</article>

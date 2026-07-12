@@ -1,0 +1,133 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+{%- comment %} ── Canonical & feed discovery ─────────────────────────── {%- endcomment %}
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="alternate" type="application/atom+xml"
+      title="{{ site.title }} – Articles"
+      href="{{ '/feed/articles.xml' | absolute_url }}">
+
+{%- comment %} ── Standard meta ─────────────────────────────────────── {%- endcomment %}
+{% if page.abstract %}
+<meta name="description" content="{{ page.abstract | strip_html | strip_newlines | truncate: 300 }}">
+{% elsif site.description %}
+<meta name="description" content="{{ site.description }}">
+{% endif %}
+{% if page.keywords %}
+<meta name="keywords" content="{{ page.keywords | join: ', ' }}">
+{% endif %}
+{% if page.authors %}
+<meta name="author" content="{{ page.authors[0].name }}">
+{% elsif site.author.name %}
+<meta name="author" content="{{ site.author.name }}">
+{% endif %}
+
+{%- comment %} ── Google Scholar citation_* tags ─────────────────────── {%- endcomment %}
+{% if page.title %}
+<meta name="citation_title" content="{{ page.title }}">
+{% endif %}
+{% for author in page.authors %}
+<meta name="citation_author" content="{{ author.name }}">
+{% endfor %}
+{% if page.date %}
+<meta name="citation_publication_date" content="{{ page.date | date: '%Y/%m/%d' }}">
+{% endif %}
+{% if page.journal %}
+<meta name="citation_journal_title" content="{{ page.journal }}">
+{% endif %}
+{% if page.volume %}
+<meta name="citation_volume" content="{{ page.volume }}">
+{% endif %}
+{% if page.issue %}
+<meta name="citation_issue" content="{{ page.issue }}">
+{% endif %}
+{% if page.pages %}
+{% assign _pp = page.pages | split: '-' %}
+<meta name="citation_firstpage" content="{{ _pp[0] | strip }}">
+{% if _pp[1] %}
+<meta name="citation_lastpage" content="{{ _pp[1] | strip }}">
+{% endif %}
+{% endif %}
+{% if page.doi %}
+<meta name="citation_doi" content="{{ page.doi }}">
+{% endif %}
+<meta name="citation_abstract_html_url" content="{{ page.url | absolute_url }}">
+
+{%- comment %} ── Dublin Core ───────────────────────────────────────── {%- endcomment %}
+{% if page.title %}
+<meta name="DC.title" content="{{ page.title }}">
+{% endif %}
+{% for author in page.authors %}
+<meta name="DC.creator" content="{{ author.name }}">
+{% endfor %}
+{% if page.abstract %}
+<meta name="DC.description" content="{{ page.abstract | strip_html | strip_newlines | truncate: 500 }}">
+{% endif %}
+{% for kw in page.keywords %}
+<meta name="DC.subject" content="{{ kw }}">
+{% endfor %}
+{% if page.date %}
+<meta name="DC.date" content="{{ page.date | date: '%Y-%m-%d' }}">
+{% endif %}
+{% if page.doi %}
+<meta name="DC.identifier" scheme="URI" content="https://doi.org/{{ page.doi }}">
+{% endif %}
+<meta name="DC.language" content="en">
+{% if page.license %}
+<meta name="DC.rights" content="{{ page.license }}">
+{% endif %}
+<meta name="DC.type" content="Text">
+<meta name="DC.format" content="text/html">
+
+{%- comment %} ── Open Graph ───────────────────────────────────────── {%- endcomment %}
+<meta property="og:type" content="article">
+{% if page.title %}
+<meta property="og:title" content="{{ page.title }}">
+{% endif %}
+{% if page.abstract %}
+<meta property="og:description" content="{{ page.abstract | strip_html | strip_newlines | truncate: 300 }}">
+{% endif %}
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:site_name" content="{{ site.title }}">
+
+{%- comment %} ── Schema.org JSON-LD: ScholarlyArticle ──────────────── {%- endcomment %}
+{% if page.layout == 'article' %}
+{%- comment -%}
+  Build optional fields as a leading-comma string to avoid trailing-comma
+  issues in the JSON-LD object.  Each present field is prefixed with a comma
+  so they can be safely appended after any always-present field.
+{%- endcomment -%}
+{% capture _ld_opt %}{% if page.pages %},"pagination":{{ page.pages | jsonify }}{% endif %}{% if page.keywords %},"keywords":{{ page.keywords | jsonify }}{% endif %}{% if page.doi %},"identifier":{"@type":"PropertyValue","propertyID":"doi","value":"https://doi.org/{{ page.doi }}"},"sameAs":"https://doi.org/{{ page.doi }}"{% endif %}{% endcapture %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": {{ page.title | jsonify }},
+  "abstract": {{ page.abstract | strip_html | jsonify }},
+  "author": [{% for author in page.authors %}{"@type":"Person","name":{{ author.name | jsonify }}{% if author.orcid %},"identifier":{"@type":"PropertyValue","propertyID":"ORCID","value":"https://orcid.org/{{ author.orcid }}"}{% endif %}}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+  "isPartOf": {"@type":"Periodical","name":{{ page.journal | jsonify }}{% if page.volume %},"volumeNumber":{{ page.volume | jsonify }}{% endif %}{% if page.issue %},"issueNumber":{{ page.issue | jsonify }}{% endif %}},
+  "url": "{{ page.url | absolute_url }}",
+  "isAccessibleForFree": true,
+  "inLanguage": "en"{{ _ld_opt }},
+  "publisher": {"@type":"Person","name":{{ site.author.name | jsonify }}{% if site.author.orcid %},"identifier":{"@type":"PropertyValue","propertyID":"ORCID","value":"https://orcid.org/{{ site.author.orcid }}"}{% endif %}}
+}
+</script>
+{% endif %}
+
+{%- comment %} ── MathJax 3 (opt-in per article via mathjax: true) ──── {%- endcomment %}
+{% if page.mathjax %}
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: { fontCache: 'global' }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+{% endif %}

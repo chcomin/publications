@@ -1,0 +1,24 @@
+---
+permalink: /llms-full.txt
+---
+{% assign articles = site.articles | sort: "date" | reverse %}
+{%- for article in articles %}
+================================================================================
+TITLE: {{ article.title }}
+AUTHORS: {% for a in article.authors %}{{ a.name }}{% if a.orcid %} (ORCID: {{ a.orcid }}){% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}
+
+JOURNAL: {{ article.journal }}{% if article.volume %}, vol. {{ article.volume }}{% endif %}{% if article.issue %}, no. {{ article.issue }}{% endif %}{% if article.pages %}, pp. {{ article.pages }}{% endif %}
+YEAR: {{ article.year }}
+DATE: {{ article.date | date: '%Y-%m-%d' }}
+DOI: https://doi.org/{{ article.doi }}
+URL: {{ article.url | absolute_url }}
+{% if article.keywords %}KEYWORDS: {{ article.keywords | join: ", " }}{% endif %}
+{% if article.license %}LICENSE: {{ article.license }}{% endif %}
+
+ABSTRACT:
+{{ article.abstract }}
+
+FULL TEXT:
+{{ article.content | strip_html | strip }}
+
+{% endfor %}
