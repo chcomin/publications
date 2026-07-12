@@ -3,7 +3,7 @@
 # ============================================================
 title: "Cesar H. Comin Publications"
 description: >-
-  Full-text of articles by Cesar H. Comin.
+  Full-text of articles by Cesar H. Comin. The text of the articles are converted to Markdown from the original Latex or PDF files. 
 
 url: "https://chcomin.github.io"
 baseurl: "/publications"
@@ -57,3 +57,4 @@ exclude:
   - README.md
   - "*.sh"
   - vendor/
+  - scripts/
