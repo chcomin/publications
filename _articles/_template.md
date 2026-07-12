@@ -15,15 +15,12 @@ issue: 1
 pages: 1-10
 doi: 10.XXXX/XXXXXXXX
 abstract: |
-  Write the full abstract here.  The vertical bar (|) preserves line breaks
-  in YAML; the text is treated as a single block.  Markdown and inline LaTeX
-  (e.g. $x^2$) are supported when mathjax is true.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 keywords:
   - keyword one
   - keyword two
   - keyword three
 mathjax: true         
-# license: "CC BY 4.0"  
 bibtex: |
   @article{CITEKEY,
     title   = {Full Title of the Article},
@@ -38,25 +35,5 @@ bibtex: |
 ---
 
 ## Introduction
-
-Article body starts here.  Use standard Markdown headings, paragraphs,
-lists, and code fences.
-
-With `mathjax: true`, inline equations use `$...$` or `\(...\)` and
-display equations use `$$...$$` or `\[...\]`.
-
-## Methods
-
-...
-
-## Results
-
-...
-
-## Conclusion
-
-...
-
-## References
 
 ...
