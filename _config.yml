@@ -3,7 +3,7 @@
 # ============================================================
 title: "Cesar H. Comin Publications"
 description: >-
-  This is a collection of selected full-text articles by Prof. Cesar H. Comin. They are for indexing and archival purposes. The text of the articles have been converted to Markdown from the original Latex or PDF files. 
+  This is a collection of articles by Prof. Cesar H. Comin. They are for indexing and archival purposes. The full text of some articles have been converted to Markdown from the original Latex or PDF files. 
 
 url: "https://chcomin.github.io"
 baseurl: "/publications"
