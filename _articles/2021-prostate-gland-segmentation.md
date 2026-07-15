@@ -17,6 +17,7 @@ volume: 94
 issue: 1
 pages: 101999
 doi: 10.1016/j.compmedimag.2021.101999
+pdf_url: /assets/pdfs/2021-prostate-gland-segmentation.pdf
 abstract: |
   Prostate cancer (PCa) is a pervasive condition that is manifested in a wide range of histologic patterns in biopsy samples. Given the importance of identifying abnormal prostate tissue to improve prognosis, many computerized methodologies aimed at assisting pathologists in diagnosis have been developed. It is often argued that improved diagnosis of a tissue region can be obtained by considering measurements that can take into account several properties of its surroundings, therefore providing a more robust context for the analysis. Here we propose a novel methodology that can be used for systematically defining contextual features regarding prostate glands. This is done by defining a Gland Context Network (GCN), a representation of the prostate sample containing information about the spatial relationship between glands as well as the similarity between their appearance. We show that such a network can be used for establishing contextual features at any spatial scale, therefore providing information that is not easily obtained from traditional shape and textural features. Furthermore, it is shown that even basic features derived from a GCN can lead to state-of-the-art classification performance regarding PCa. All in all, GCNs can assist in defining more effective approaches for PCa grading.
 keywords:

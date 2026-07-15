@@ -15,6 +15,7 @@ volume: 225
 issue: 1
 pages: 107021
 doi: 10.1016/j.cmpb.2022.107021
+pdf_url: /assets/pdfs/2022-segmentation-biases.pdf
 abstract: |
   Convolutional Neural Networks (CNNs) can provide excellent results regarding the segmentation of blood vessels. One important aspect of CNNs is that they can be trained on large amounts of data and then be made available, for instance, in image processing software. The pre-trained CNNs can then be easily applied in downstream blood vessel characterization tasks, such as the calculation of the length, tortuosity, or caliber of the blood vessels. Yet, it is still unclear if pre-trained CNNs can provide robust, unbiased, results in downstream tasks involving the morphological analysis of blood vessels. Here, we focus on measuring the tortuosity of blood vessels and investigate to which extent CNNs may provide biased tortuosity values even after fine-tuning the network to a new dataset under study.
   We develop a procedure for quantifying the influence of CNN pre-training in downstream analyses involving the measurement of morphological properties of blood vessels. Using the methodology, we compare the performance of CNNs that were trained on images containing blood vessels having high tortuosity with CNNs that were trained on blood vessels with low tortuosity and fine-tuned on blood vessels with high tortuosity. The opposite situation is also investigated.
