@@ -14,6 +14,7 @@ volume: 1
 issue: 1
 pages: 1-10
 doi: 10.XXXX/XXXXXXXX
+pdf_url: /assets/pdfs/full_title_of_the_article.pdf
 abstract: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 keywords:
